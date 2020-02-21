@@ -1,0 +1,158 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "nw.core.aif.a.messagemonitoring",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "${project.version}"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata4/aif/msgmonitoring_api/default/aif/messagehandling/0001/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"CDSService": {
+				"uri": "/sap/opu/odata4/aif/msgmonitoring_cds/srvd/aif/messagemonitor/0001/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/metadatacds.xml"
+				}
+			}
+		},
+		"ach": "CA-GTF-AIF"
+	},
+	"sap.fiori": {
+		"_version": "1.1.0",
+		"registrationIds": [
+			"F4516"
+		],
+		"archeType": "transactional"
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal",
+			"sap_belize",
+			"sap_fiori_3"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "nw.core.aif.a.messagemonitoring.view.Main",
+			"type": "XML",
+			"async": true,
+			"id": "Interface"
+		},
+		"dependencies": {
+			"minUI5Version": "1.70.1",
+			"libs": {
+				"sap.ui.core": {
+					"lazy": false
+				},
+				"sap.m": {
+					"lazy": false
+				},
+				"sap.ui.comp": {
+					"lazy": true
+				},
+				"sap.f": {
+					"lazy": true
+				},
+				"sap.ui.table": {
+					"lazy": true
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "nw.core.aif.a.messagemonitoring.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v4.ODataModel",
+				"settings": {
+					"synchronizationMode": "None",
+					"operationMode": "Server"
+				},
+				"dataSource": "mainService",
+				"preload": true
+			},
+			"CDS": {
+				"type": "sap.ui.model.odata.v4.ODataModel",
+				"settings": {
+					"synchronizationMode": "None",
+					"operationMode": "Server"
+				},
+				"dataSource": "CDSService",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": []
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "nw.core.aif.a.messagemonitoring.view",
+				"controlAggregation": "pages",
+				"controlId": "MessageMonitorApp",
+				"clearControlAggregation": false,
+				"clearTarget": "true"
+			},
+			"routes": [
+				{
+					"name": "messages",
+					"pattern": "",
+					"target": "messages"
+				},
+				{
+					"pattern": "messageDetail",
+					"name": "messageDetail",
+					"target": "messageDetail"
+				}
+			],
+			"targets": {
+				"messages": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "Messages",
+					"viewName": "Messages"
+				},
+				"messageDetail": {
+					"viewId": "MessageDetail",
+					"viewName": "MessgeDetail"
+				}
+			}
+		}
+	}
+}

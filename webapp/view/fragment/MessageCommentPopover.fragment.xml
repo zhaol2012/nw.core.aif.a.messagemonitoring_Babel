@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover
+		id="messageCommentPopover"
+		title="{parts:['i18n>messageCommentListTitle', {value: 0}], formatter: 'jQuery.sap.formatMessage'}"
+		placement="Auto"
+		horizontalScrolling="false">
+	
+		<endButton>
+			<Button text="{i18n>buttonClose}" press=".oCommentPopoverDelegate.onPopoverCommentClose"/>
+		</endButton>
+		
+		<content>
+			<FeedInput
+					showIcon="false"
+					post=".oCommentPopoverDelegate.onMessageCommentPost"/>	
+			<List id="messageCommentList" items="{
+							path : 'CDS>/MessageComment',
+							sorter : {
+								path : 'CreateTime' ,
+								descending : true
+							},
+							events: {
+								change: '.oCommentPopoverDelegate.onCommentChange'
+							}
+						}" >
+				<FeedListItem
+						sender="{CDS>NoteCreatedByFormattedName}"
+						showIcon="false"
+						timestamp="{CDS>CreateTime}"
+						text="{CDS>Note}" />
+			</List>
+		</content>
+
+	</ResponsivePopover>
+</core:FragmentDefinition>

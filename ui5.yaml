@@ -1,0 +1,67 @@
+specVersion: '1.0'
+metadata:
+  name: aif_monitor
+type: application
+server:
+  customMiddleware:
+  - name: ui5-middleware-servestatic
+    afterMiddleware: compression
+    mountPath: /resources
+    configuration:
+      rootPath: "./sapui5-rt-1.73.1"
+builder:
+  bundles:
+  - bundleDefinition:
+      name: nw/core/aif/a/messagemonitoring/Component-preload.js
+      defaultFileTypes:
+      - ".js"
+      - ".json"
+      - ".xml"
+      - ".html"
+      - ".library"
+      sections:
+      - mode: raw
+        filters:
+        - nw/core/aif/a/messagemonitoring/regenerator-runtime/runtime.js
+      - mode: preload
+        filters:
+        - nw/core/aif/a/messagemonitoring/manifest.json
+        - nw/core/aif/a/messagemonitoring/controller/**
+        - nw/core/aif/a/messagemonitoring/Component.js
+        - nw/core/aif/a/messagemonitoring/i18n/**
+        - nw/core/aif/a/messagemonitoring/model/**
+        - nw/core/aif/a/messagemonitoring/ui5fixes/**
+        - nw/core/aif/a/messagemonitoring/util/**
+        - nw/core/aif/a/messagemonitoring/view/**
+        - nw/core/aif/a/messagemonitoring/libs/**
+        - nw/core/aif/a/messagemonitoring/test/**
+        - nw/core/aif/a/messagemonitoring/service/**
+        - nw/core/aif/a/messagemonitoring/state/**
+        - nw/core/aif/a/messagemonitoring/localService/**
+        resolve: false
+        sort: true
+        declareModules: false
+    bundleOptions:
+      optimize: true
+      usePredefineCalls: true
+  customTasks:
+    - name: babel
+      afterTask: replaceVersion
+---
+specVersion: "1.0"
+kind: extension
+type: task
+metadata:
+  name: babel
+task:
+  path: lib/tasks/babel.js
+#   - name: odataProxy
+#     beforeMiddleware: serveResources
+# ---
+# specVersion: "1.0"
+# kind: extension
+# type: server-middleware
+# metadata:
+#   name: odataProxy
+# middleware:
+#   path: lib/middleware/odataProxy.js

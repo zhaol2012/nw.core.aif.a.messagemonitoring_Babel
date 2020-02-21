@@ -1,0 +1,8 @@
+<mvc:View controllerName="nw.core.aif.a.messagemonitoring.controller.Main" 
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+    displayBlock="true" >
+		<App id="MessageMonitorApp">
+		</App>
+</mvc:View>

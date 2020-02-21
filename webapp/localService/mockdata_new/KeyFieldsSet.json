@@ -1,0 +1,23 @@
+{
+    "@odata.context": "$metadata#KeyFieldsSet",
+    "@odata.metadataEtag": "W/\"20200119140147\"",
+    "value": [
+        {
+            "Namespace": "X180_0",
+            "InterfaceName": "STS_MGR_3",
+            "InterfaceVersion": "1.0.0",
+            "FieldName": "PLANT",
+            "IsHidden": "X",
+            "IsSelectionOption": "X",
+            "Type": "Edm.String",
+            "Length": "        4",
+            "Decimals": "        0",
+            "InputMask": "",
+            "ConvExit": "",
+            "Precision": "        0",
+            "Scale": "        0",
+            "Uppercase": "X",
+            "Label": "Plant"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="{ValueHelp>/title}"
+		class="sapUiPopupWithPadding"
+		items="{ValueHelp>/items}"
+		search=".oFilterBarHandle.handleSingleValueHelpSearch"
+		confirm=".oFilterBarHandle.handleSingleValueHelpClose"
+		cancel=".oFilterBarHandle.handleSingleValueHelpClose">
+		<StandardListItem
+			title="{ValueHelp>Value}"
+			description="{ValueHelp>Label}" />
+	</SelectDialog>
+</core:FragmentDefinition>

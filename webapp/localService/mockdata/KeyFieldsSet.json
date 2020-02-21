@@ -1,0 +1,36 @@
+[
+    {
+      "Namespace" : "Z_YQ",
+      "InterfaceName" : "FLBOOKING",
+      "InterfaceVersion" : "1",
+      "FieldName" : "AGENCY",
+      "IsHidden" : "X",
+      "IsSelectionOption" : "X",
+      "Type" : "Edm.String",
+      "Length" : "        8",
+      "Decimals" : "        0",
+      "InputMask" : "[0-9]*",
+      "ConvExit" : "",
+      "Precision" : "        0",
+      "Scale" : "        0",
+      "Uppercase" : "",
+      "Label" : "Travel Agency Number"
+    },
+    {
+      "Namespace" : "Z_YQ",
+      "InterfaceName" : "FLBOOKING",
+      "InterfaceVersion" : "1",
+      "FieldName" : "SALES_AGENT_ID",
+      "IsHidden" : "X",
+      "IsSelectionOption" : "X",
+      "Type" : "Edm.String",
+      "Length" : "       20",
+      "Decimals" : "        0",
+      "InputMask" : "",
+      "ConvExit" : "",
+      "Precision" : "        0",
+      "Scale" : "        0",
+      "Uppercase" : "X",
+      "Label" : "Sales Agent ID"
+    }
+  ]

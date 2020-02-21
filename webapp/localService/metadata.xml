@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="SAP__common"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Measures.V1" Alias="SAP__measures"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Core.V1" Alias="SAP__core"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="SAP__capabilities"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="SAP__aggregation"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Validation.V1" Alias="SAP__validation"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="SAP__UI"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="AIF_ODATA" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="IndexTableGeneric" sap:label="Custom Function" sap:content-version="1">
+				<Key><PropertyRef Name="MessageGuid"/><PropertyRef Name="Namespace"/><PropertyRef Name="InterfaceName"/><PropertyRef Name="InterfaceVersion"/></Key>
+				<Property Name="MessageGuid" Type="Edm.String" Nullable="false"/><Property Name="Namespace" Type="Edm.String" Nullable="false" MaxLength="6"/>
+				<Property Name="InterfaceName" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="InterfaceVersion" Type="Edm.String" Nullable="false" MaxLength="5"/>
+				<Property Name="LogMessage" Type="Edm.String" Nullable="false" MaxLength="220"/><Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1"/>
+				<Property Name="ProcessDate" Type="Edm.DateTimeOffset" Nullable="false"/>
+				<Property Name="AssignedProcessor" Type="Edm.String" Nullable="false" MaxLength="12"/>
+				<Property Name="AssignedProcessStatus" Type="Edm.String" Nullable="false" MaxLength="1"/>
+				<Property Name="EditedStatus" Type="Edm.String" Nullable="false" MaxLength="1"/>
+				<Property Name="KeyFields" Type="Edm.String" Nullable="false"/>
+				<Property Name="CommentCount" Type="Edm.Int16" Nullable="false"/>
+				</EntityType>
+			<EntityType Name="KeyFields">
+				<Key><PropertyRef Name="Namespace"/><PropertyRef Name="InterfaceName"/><PropertyRef Name="InterfaceVersion"/><PropertyRef Name="FieldName"/></Key><Property Name="Namespace" Type="Edm.String" Nullable="false" MaxLength="6"/><Property Name="InterfaceName" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="InterfaceVersion" Type="Edm.String" Nullable="false" MaxLength="5"/><Property Name="FieldName" Type="Edm.String" Nullable="false" MaxLength="30"/><Property Name="IsHidden" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="IsSelectionOption" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="20"/><Property Name="Length" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="Decimals" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="InputMask" Type="Edm.String" Nullable="false"/><Property Name="ConvExit" Type="Edm.String" Nullable="false" MaxLength="5"/><Property Name="Precision" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="Scale" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="Uppercase" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="Label" Type="Edm.String" Nullable="false" MaxLength="55"/></EntityType>
+			<EntityType Name="MessageKey">
+				<Key><PropertyRef Name="Namespace"/><PropertyRef Name="InterfaceName"/><PropertyRef Name="InterfaceVersion"/><PropertyRef Name="MessageGuid"/></Key><Property Name="Namespace" Type="Edm.String" Nullable="false" MaxLength="6"/><Property Name="InterfaceName" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="InterfaceVersion" Type="Edm.String" Nullable="false" MaxLength="5"/><Property Name="MessageGuid" Type="Edm.String" Nullable="false"/></EntityType>
+			<EntityType Name="MessageLog">
+				<Key><PropertyRef Name="MessageGuid"/><PropertyRef Name="Namespace"/><PropertyRef Name="InterfaceName"/><PropertyRef Name="InterfaceVersion"/><PropertyRef Name="Counter"/><PropertyRef Name="Counter2"/></Key><Property Name="MessageGuid" Type="Edm.String" Nullable="false"/><Property Name="Namespace" Type="Edm.String" Nullable="false" MaxLength="6"/><Property Name="InterfaceName" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="InterfaceVersion" Type="Edm.String" Nullable="false" MaxLength="5"/><Property Name="Counter" Type="Edm.String" Nullable="false" MaxLength="32"/><Property Name="Counter2" Type="Edm.String" Nullable="false" MaxLength="32"/><Property Name="MsgType" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="MsgId" Type="Edm.String" Nullable="false" MaxLength="20"/><Property Name="MsgNo" Type="Edm.String" Nullable="false" MaxLength="3"/><Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="220"/><Property Name="Timestamp" Type="Edm.DateTimeOffset" Precision="7"/><Property Name="HasLongText" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="HasDetailText" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="Rectypenr" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="Globalrownr" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="Fieldname" Type="Edm.String" Nullable="false" MaxLength="30"/></EntityType>
+			<EntityType Name="MessageReturn">
+				<Key><PropertyRef Name="MSGGUID"/></Key><Property Name="TYPE" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="20"/><Property Name="NUMBER" Type="Edm.String" Nullable="false" MaxLength="3"/><Property Name="MESSAGE" Type="Edm.String" Nullable="false" MaxLength="220"/><Property Name="LOG_NO" Type="Edm.String" Nullable="false" MaxLength="20"/><Property Name="LOG_MSG_NO" Type="Edm.String" Nullable="false" MaxLength="6"/><Property Name="MESSAGE_V1" Type="Edm.String" Nullable="false" MaxLength="50"/><Property Name="MESSAGE_V2" Type="Edm.String" Nullable="false" MaxLength="50"/><Property Name="MESSAGE_V3" Type="Edm.String" Nullable="false" MaxLength="50"/><Property Name="MESSAGE_V4" Type="Edm.String" Nullable="false" MaxLength="50"/><Property Name="PARAMETER" Type="Edm.String" Nullable="false" MaxLength="32"/><Property Name="ROW" Type="Edm.String" Nullable="false"/><Property Name="FIELD" Type="Edm.String" Nullable="false" MaxLength="30"/><Property Name="SYSTEM" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="MSGGUID" Type="Edm.String" Nullable="false"/></EntityType>
+			<Action Name="MessageCancel" IsBound="true"><Parameter Name="MESSAGE_KEY" Type="com.sap.gateway.default.aif.messagehandling.v0001.MessageKey" Nullable="false"/><ReturnType Type="Collection(com.sap.gateway.default.aif.messagehandling.v0001.MessageReturn)" Nullable="false"/></Action>
+			<Action Name="MessageRestart" IsBound="true"><Parameter Name="MESSAGE_KEY" Type="com.sap.gateway.default.aif.messagehandling.v0001.MessageKey" Nullable="false"/><ReturnType Type="Collection(com.sap.gateway.default.aif.messagehandling.v0001.MessageReturn)" Nullable="false"/></Action>
+			<EntityContainer Name="Container">
+				<EntitySet Name="IndexTableSet" EntityType="com.sap.gateway.default.aif.messagehandling.v0001.IndexTable"/>
+				<EntitySet Name="KeyFieldsSet" EntityType="com.sap.gateway.default.aif.messagehandling.v0001.KeyFields"/>
+				<EntitySet Name="MessageKeySet" EntityType="com.sap.gateway.default.aif.messagehandling.v0001.MessageKey"/>
+				<EntitySet Name="MessageLogSet" EntityType="com.sap.gateway.default.aif.messagehandling.v0001.MessageLog"/>
+				<EntitySet Name="MessageReturnSet" EntityType="com.sap.gateway.default.aif.messagehandling.v0001.MessageReturn"/>
+				<ActionImport Name="MessageCancel" Action="com.sap.gateway.default.aif.messagehandling.v0001.MessageCancel"
+				EntitySet="com.sap.gateway.default.aif.messagehandling.v0001.Container/MessageReturnSet"/></EntityContainer>
+		
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

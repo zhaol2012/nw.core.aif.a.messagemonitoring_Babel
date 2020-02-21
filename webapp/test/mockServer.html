@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>MessageMonitor</title>
+		<script id="sap-ui-bootstrap"
+			src="/resources/sap-ui-core.js"
+			data-sap-ui-theme="sap_fiori_3"
+			data-sap-ui-resourceroots='{"nw.core.aif.a.messagemonitoring": "../"}'
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-oninit="module:nw/core/aif/a/messagemonitoring/test/initMockServer"
+			data-sap-ui-async="true">
+		</script>
+			<script>
+		    var oStartupParameters = jQuery.sap.getUriParameters().mParams;
+            var oComponent = sap.ui.getCore().createComponent({
+    		name: "nw.core.aif.a.messagemonitoring",
+    		settings: {
+    			componentData: { startupParameters: oStartupParameters }
+    		}
+			});
+            new sap.ui.core.ComponentContainer({
+    			component: oComponent
+			}).placeAt("content");
+		</script>
+	</head>
+	<body class="sapUiBody" role="application">
+		<div id="content"></div> 
+	</body>
+</html>

@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ResponsivePopover 
+		title="{i18n>messageListTitle}" 
+		placement="Auto" 
+		contentWidth="90%" 
+		contentHeight="90%" 
+		verticalScrolling="false"
+		resizable="true">
+		<content>
+			<MessageView 
+				 id="messageLogList" 
+				 itemSelect=".oLogPopoverDelegate.onItemSelect">
+			</MessageView>
+		</content>
+		<endButton>
+			<Button text="{i18n>buttonClose}" press=".oLogPopoverDelegate.onPopoverMessageLogClose"/>
+		</endButton>		
+	</ResponsivePopover>
+</core:FragmentDefinition>

@@ -1,0 +1,125 @@
+<mvc:View controllerName="nw.core.aif.a.messagemonitoring.controller.Messages" 
+	xmlns="sap.ui.table" 
+	xmlns:f="sap.f" 
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:m="sap.m" 
+	xmlns:fb="sap.ui.comp.filterbar" 
+	xmlns:dnd="sap.ui.core.dnd" 
+	xmlns:fdnd="sap.f.dnd" 
+	xmlns:sv="sap.ui.comp.smartvariants">
+	<f:DynamicPage id="dynamicPage" fitContent="true">
+		<f:title>
+			<f:DynamicPageTitle id="overViewTitle" backgroundDesign="Solid">
+				<f:heading>
+					<!--<sv:SmartVariantManagement id="OverviewVariant"-->
+					<!-- persistencyKey="nw.core.aif.a.messagemonitoringoverview.overview.s1" showShare="true" showExecuteOnSelection="true" entitySet="IFStats"/>-->
+				</f:heading>
+				<f:snappedContent>
+					<m:Text id="statusText"></m:Text>
+				</f:snappedContent>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader id="overViewHeader" backgroundDesign="Solid">
+				<f:content>
+					<fb:FilterBar id="messageFilterbar" search="onSearch" showRestoreButton="false" showClearButton="false" showFilterConfiguration="false" useToolbar="false">
+						<fb:filterGroupItems >
+							<fb:FilterGroupItem id="DTfromFilter" groupName="AIFStandard" groupTitle="{i18n>AIFStandard}" label="{i18n>dateFrom}" labelTooltip="{i18n>dateFrom}" name="DateFrom" visibleInFilterBar="true">
+								<fb:control>
+									<m:DateTimePicker id="DTfrom" value="{Filters>/from}" displayFormat="medium" change="oFilterBarHandle.onInputChange" ariaLabelledBy="DTfromFilter"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem id="DTtoFilter" groupName="AIFStandard" groupTitle="{i18n>AIFStandard}" label="{i18n>dateTo}" labelTooltip="{i18n>dateTo}" name="DateTo" visibleInFilterBar="true">
+								<fb:control>
+									<m:DateTimePicker id="DTto" value="{Filters>/to}" displayFormat="medium" change="oFilterBarHandle.onInputChange"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem id="StatusFilter" groupName="AIFStandard" groupTitle="{i18n>AIFStandard}" label="{i18n>status}" labelTooltip="{i18n>status}" name="Status" visibleInFilterBar="true">
+								<fb:control>
+									<m:MultiComboBox id="StatusInput" placeholder="{i18n>selectStatus}" items="{Filters>/statusList}" selectedKeys="{Filters>/statusValues}">
+										<core:Item id="StatusItem" key="{Filters>key}" text="{Filters>label}"/>
+									</m:MultiComboBox>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem id="GUIDFilter" groupName="AIFStandard" groupTitle="{i18n>AIFStandard}" label="{i18n>messageID}" labelTooltip="{i18n>messageID}" name="MessageID" visibleInFilterBar="true">
+								<fb:control>
+									<m:Input id="GUIDInput" placeholder="{i18n>messageID}" value="{Filters>/messageID}" submit="onSearch"></m:Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<!--<fb:FilterGroupItem id="LogFilter" groupName="AIFStandard" groupTitle="{i18n>AIFStandard}" label="{i18n>logMessage}"-->
+							<!-- labelTooltip="{i18n>logMessage}" name="LogMessage" visibleInFilterBar="true">-->
+							<!--	<fb:control>-->
+							<!--		<m:Input id="LogInput" value="{Filters>/LogMessage}"></m:Input>-->
+							<!--	</fb:control>-->
+							<!--</fb:FilterGroupItem>-->
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<Table id="messageOverviewTab" selectionMode="MultiToggle" rowSelectionChange="onSelectionChange" rowActionCount="1" visibleRowCountMode="Auto" rowHeight="30">
+				<extension>
+					<m:Toolbar id="messageTabToolbar">
+						<m:Title id="tabTitle"/>
+						<m:ToolbarSpacer id="tabToolbarSpacer" />
+						<m:Button id="buttonRestartMessage" enabled="false" text="{i18n>buttonRestartMessage}" type="Transparent" press=".onRestartMessage" visible="{= ${UI>/isTechnicalInterface} === false}"/>
+						<m:Button id="buttonCancelMessage" enabled="false" text="{i18n>buttonCancelMessage}" type="Transparent" press=".onCancelMessage" visible="{= ${UI>/isTechnicalInterface} === false}"/>
+						<!--<m:Button id="buttonChangeMessageValues" text="{i18n>buttonChangeMessageValues}" type="Transparent" press=".onChangeMessageValues"/>-->
+						<!--<m:Button id="buttonSetProcessor" text="{i18n>buttonSetProcessor}" type="Transparent" press=".onSetProcessor"/>-->
+						<m:Button id="buttonSetting" icon="sap-icon://action-settings" tooltip="{i18n>buttonSetting}" type="Transparent" press=".onTableSetting"/>
+					</m:Toolbar>
+				</extension>
+				<columns>
+					<Column id="columnStatus" width="7rem" sortProperty="Status">
+						<m:Label id="columnStatusLabel" text="{i18n>columnStatus}" vAlign="Middle"/>
+						<template>
+							<m:ObjectStatus id="columnStatusValue" icon="{ parts: [ {path: 'Status'}, {path: 'EditedStatus'} ], formatter: '.formatter.getStatusIcon' }" text="{ parts: [ {path: 'Status'}, {path: 'EditedStatus'} ], formatter: '.formatter.getStatusText' }" state="{ parts: [ {path: 'Status'}, {path: 'EditedStatus'} ], formatter: '.formatter.getStatusState'}"/>
+						</template>
+					</Column>
+					<Column id="columnDate" width="12rem" sortProperty="ProcessDate">
+						<m:Label id="columnDateLabel" text="{i18n>columnProcessDate}"/>
+						<template>
+							<m:Text id="columnDateText" text="{ProcessDate}"/>
+						</template>
+					</Column>
+					<Column id="columnMSG" width="19rem" sortProperty="MessageGuid">
+						<m:Label id="columnMSGLabel" text="{i18n>columnMessageGuid}"/>
+						<template>
+							<m:Text id="columnMSGValue" text="{MessageGuid}"/>
+						</template>
+					</Column>
+					<Column id="columnLogText">
+						<m:Label id="columnLogTextLabel" text="{i18n>columnLogMessage}"/>
+						<template>
+							<m:Link id="columnLogTextValue" text="{LogMessage}" press=".oLogPopoverDelegate.openPopoverMessageLog"/>
+						</template>
+					</Column>
+					<!--<Column>-->
+					<!--	<m:Label text="{i18n>columnAssignedProcessStatus}"/>-->
+					<!--	<template>-->
+					<!--		<m:Text text="{ path: 'AssignedProcessStatus', formatter: '.formatter.getAssignedProcessStatusText'}"/>-->
+					<!--	</template>-->
+					<!--</Column>-->
+					<!--<Column>-->
+					<!--	<m:Label text="{i18n>columnAssignedProcessor}"/>-->
+					<!--	<template>-->
+					<!--		<m:Text text="{AssignedProcessor}"/>-->
+					<!--	</template>-->
+					<!--</Column>-->
+					<Column id="columnComment" width="7rem" visible="{= ${UI>/isTechnicalInterface} === false}">
+						<m:Label id="columnCommentLabel" text="{i18n>columnComment}"/>
+						<template>
+							<m:Link id="columnCommentValue" text="{ path: 'CommentCount', formatter: '.formatter.getCommentText'}" press=".oCommentPopoverDelegate.openMessageCommentPopover"/>
+						</template>
+					</Column>
+				</columns>
+
+			</Table>
+		</f:content>
+		<!--<landmarkInfo>-->
+		<!--	<f:DynamicPageAccessibleLandmarkInfo id="CardLandMark" rootRole="Main" contentRole="Navigation" headerRole="Search"></DynamicPageAccessibleLandmarkInfo>-->
+		<!--</landmarkInfo>-->
+	</f:DynamicPage>
+</mvc:View>

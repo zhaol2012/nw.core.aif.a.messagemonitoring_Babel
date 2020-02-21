@@ -1,0 +1,6 @@
+{
+    "sap": { 
+        "target": "http://ldai2yi3.wdf.sap.corp:50033",
+        "auth": "ZHAOLEI:Zhaol@2018"
+    }
+}

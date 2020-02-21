@@ -1,0 +1,32 @@
+--B57592EFE51FB0AC94F58F1353DF13880
+Content-Type: application/http
+Content-Length: 312
+content-transfer-encoding: binary
+
+HTTP/1.1 200 OK
+Content-Type: application/json;ieee754compatible=true;odata.metadata=minimal; charset=utf-8
+Content-Length: 107
+cache-control: no-cache, no-store, must-revalidate
+odata-version: 4.0
+
+{"@odata.context":"$metadata#IndexTableGenericSet","@odata.metadataEtag":"W/\"20200116033320\"","value":[]}
+--B57592EFE51FB0AC94F58F1353DF13880
+Content-Type: multipart/mixed; boundary=B57592EFE51FB0AC94F58F1353DF13881
+Content-Length:       736
+
+--B57592EFE51FB0AC94F58F1353DF13881
+Content-Type: application/http
+Content-Length: 553
+content-transfer-encoding: binary
+content-id: 1
+
+HTTP/1.1 200 OK
+Content-Type: application/json;ieee754compatible=true;odata.metadata=minimal
+Content-Length: 363
+odata-version: 4.0
+cache-control: no-cache, no-store, must-revalidate
+
+{"@odata.context":"$metadata#MessageReturnSet","@odata.metadataEtag":"W/\"20200116033320\"","value":[{"TYPE":"S","ID":"/AIF/ERROR_HANDLING","NUMBER":"160","MESSAGE":"6 messages are scheduled for restart","LOG_NO":"","LOG_MSG_NO":"0","MESSAGE_V1":"6","MESSAGE_V2":"","MESSAGE_V3":"","MESSAGE_V4":"","PARAMETER":"","ROW":"0 ","FIELD":"","SYSTEM":"","MSGGUID":"*"}]}
+--B57592EFE51FB0AC94F58F1353DF13881--
+
+--B57592EFE51FB0AC94F58F1353DF13880--

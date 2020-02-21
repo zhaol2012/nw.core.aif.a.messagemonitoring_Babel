@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="SAP__common"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Measures.V1" Alias="SAP__measures"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Core.V1" Alias="SAP__core"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="SAP__capabilities"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="SAP__aggregation"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Validation.V1" Alias="SAP__validation"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/></edmx:Reference>
+	<edmx:Reference
+		Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="SAP__UI"/></edmx:Reference>
+	<edmx:DataServices>
+		<Schema Namespace="com.sap.gateway.default.aif.messagehandling.v0001" Alias="SAP__self">
+			<EntityType Name="IndexTableGeneric">
+				<Key>
+				<PropertyRef Name="MessageGuid"/>
+				<PropertyRef Name="Namespace"/>
+				<PropertyRef Name="InterfaceName"/>
+				<PropertyRef Name="InterfaceVersion"/>
+				</Key>
+				<Property Name="MessageGuid" Type="Edm.String" Nullable="false"/>
+				<Property Name="Namespace" Type="Edm.String" Nullable="false" MaxLength="6"/>
+				<Property Name="InterfaceName" Type="Edm.String" Nullable="false" MaxLength="10"/>
+				<Property Name="InterfaceVersion" Type="Edm.String" Nullable="false" MaxLength="5"/>
+				<Property Name="LogMessage" Type="Edm.String" Nullable="false" MaxLength="220"/>
+				<Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1"/>
+				<Property Name="ProcessDate" Type="Edm.DateTimeOffset" Nullable="false"/>
+				<Property Name="AssignedProcessor" Type="Edm.String" Nullable="false" MaxLength="12"/>
+				<Property Name="AssignedProcessStatus" Type="Edm.String" Nullable="false" MaxLength="1"/>
+				<Property Name="EditedStatus" Type="Edm.String" Nullable="false" MaxLength="1"/>
+				<Property Name="KeyFields" Type="Edm.String" Nullable="false"/>
+				<Property Name="CommentCount" Type="Edm.Int16" Nullable="false" />
+				</EntityType>
+			<EntityType Name="KeyFields">
+				<Key><PropertyRef Name="Namespace"/><PropertyRef Name="InterfaceName"/><PropertyRef Name="InterfaceVersion"/><PropertyRef Name="FieldName"/></Key><Property Name="Namespace" Type="Edm.String" Nullable="false" MaxLength="6"/><Property Name="InterfaceName" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="InterfaceVersion" Type="Edm.String" Nullable="false" MaxLength="5"/><Property Name="FieldName" Type="Edm.String" Nullable="false" MaxLength="30"/><Property Name="IsHidden" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="IsSelectionOption" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="20"/><Property Name="Length" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="Decimals" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="InputMask" Type="Edm.String" Nullable="false"/><Property Name="ConvExit" Type="Edm.String" Nullable="false" MaxLength="5"/><Property Name="Precision" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="Scale" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="Uppercase" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="Label" Type="Edm.String" Nullable="false" MaxLength="55"/></EntityType>
+			<EntityType Name="MessageKey">
+				<Key><PropertyRef Name="Namespace"/><PropertyRef Name="InterfaceName"/><PropertyRef Name="InterfaceVersion"/><PropertyRef Name="MessageGuid"/></Key><Property Name="Namespace" Type="Edm.String" Nullable="false" MaxLength="6"/><Property Name="InterfaceName" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="InterfaceVersion" Type="Edm.String" Nullable="false" MaxLength="5"/><Property Name="MessageGuid" Type="Edm.String" Nullable="false"/></EntityType>
+			<EntityType Name="MessageLog">
+				<Key><PropertyRef Name="MessageGuid"/><PropertyRef Name="Namespace"/><PropertyRef Name="InterfaceName"/><PropertyRef Name="InterfaceVersion"/><PropertyRef Name="Counter"/><PropertyRef Name="Counter2"/></Key><Property Name="MessageGuid" Type="Edm.String" Nullable="false"/><Property Name="Namespace" Type="Edm.String" Nullable="false" MaxLength="6"/><Property Name="InterfaceName" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="InterfaceVersion" Type="Edm.String" Nullable="false" MaxLength="5"/><Property Name="Counter" Type="Edm.String" Nullable="false" MaxLength="32"/><Property Name="Counter2" Type="Edm.String" Nullable="false" MaxLength="32"/><Property Name="MsgType" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="MsgId" Type="Edm.String" Nullable="false" MaxLength="20"/><Property Name="MsgNo" Type="Edm.String" Nullable="false" MaxLength="3"/><Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="220"/><Property Name="Timestamp" Type="Edm.DateTimeOffset" Precision="7"/><Property Name="HasLongText" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="HasDetailText" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="Rectypenr" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="Globalrownr" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="Fieldname" Type="Edm.String" Nullable="false" MaxLength="30"/></EntityType>
+			<EntityType Name="AIF_C_Msg_CommentType">
+				<Key><PropertyRef Name="Namespace"/><PropertyRef Name="InterfaceName"/><PropertyRef Name="InterfaceVersion"/><PropertyRef Name="MessageGuid"/><PropertyRef Name="counter"/></Key>
+				<Property Name="Namespace" MaxLength="6" Nullable="false" Type="Edm.String"/>
+				<Property Name="InterfaceName" MaxLength="10" Nullable="false" Type="Edm.String"/>
+				<Property Name="InterfaceVersion" MaxLength="5" Nullable="false" Type="Edm.String"/>
+				<Property Name="MessageGuid" Nullable="false" Type="Edm.Guid"/>
+				<Property Name="Counter" Nullable="false" Type="Edm.Int32"/>
+				<Property Name="Note" Nullable="false" Type="Edm.String"/>
+				<Property Name="CreateUser" MaxLength="12" Nullable="false" Type="Edm.String"/>
+				<Property Name="CreateTime" Type="Edm.DateTimeOffset"/>
+				<Property Name="NoteCreatedByFormattedName" MaxLength="80" Nullable="false" Type="Edm.String"/>
+				<Property Name="SAP__Messages" Nullable="false" Type="Collection(com.sap.gateway.srvd.aif_sd_msg_comment.v0001.SAP__Message)"/>
+			</EntityType>
+			<EntityType Name="MessageReturn">
+				<Key><PropertyRef Name="MSGGUID"/></Key><Property Name="TYPE" Type="Edm.String" Nullable="false" MaxLength="1"/><Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="20"/><Property Name="NUMBER" Type="Edm.String" Nullable="false" MaxLength="3"/><Property Name="MESSAGE" Type="Edm.String" Nullable="false" MaxLength="220"/><Property Name="LOG_NO" Type="Edm.String" Nullable="false" MaxLength="20"/><Property Name="LOG_MSG_NO" Type="Edm.String" Nullable="false" MaxLength="6"/><Property Name="MESSAGE_V1" Type="Edm.String" Nullable="false" MaxLength="50"/><Property Name="MESSAGE_V2" Type="Edm.String" Nullable="false" MaxLength="50"/><Property Name="MESSAGE_V3" Type="Edm.String" Nullable="false" MaxLength="50"/><Property Name="MESSAGE_V4" Type="Edm.String" Nullable="false" MaxLength="50"/><Property Name="PARAMETER" Type="Edm.String" Nullable="false" MaxLength="32"/><Property Name="ROW" Type="Edm.String" Nullable="false"/><Property Name="FIELD" Type="Edm.String" Nullable="false" MaxLength="30"/><Property Name="SYSTEM" Type="Edm.String" Nullable="false" MaxLength="10"/><Property Name="MSGGUID" Type="Edm.String" Nullable="false"/></EntityType>
+			<Action Name="MessageCancel" IsBound="true"><Parameter Name="MESSAGE_KEY" Type="com.sap.gateway.default.aif.messagehandling.v0001.MessageKey" Nullable="false"/><ReturnType Type="Collection(com.sap.gateway.default.aif.messagehandling.v0001.MessageReturn)" Nullable="false"/></Action>
+			<Action Name="MessageRestart" IsBound="true"><Parameter Name="MESSAGE_KEY" Type="com.sap.gateway.default.aif.messagehandling.v0001.MessageKey" Nullable="false"/><ReturnType Type="Collection(com.sap.gateway.default.aif.messagehandling.v0001.MessageReturn)" Nullable="false"/></Action>
+			<EntityContainer Name="Container"><EntitySet Name="IndexTableGenericSet" EntityType="com.sap.gateway.default.aif.messagehandling.v0001.IndexTableGeneric"/><EntitySet Name="KeyFieldsSet" EntityType="com.sap.gateway.default.aif.messagehandling.v0001.KeyFields"/><EntitySet Name="MessageKeySet" EntityType="com.sap.gateway.default.aif.messagehandling.v0001.MessageKey"/><EntitySet Name="MessageLogSet" EntityType="com.sap.gateway.default.aif.messagehandling.v0001.MessageLog"/><EntitySet Name="MessageReturnSet" EntityType="com.sap.gateway.default.aif.messagehandling.v0001.MessageReturn"/><ActionImport Name="MessageCancel" Action="com.sap.gateway.default.aif.messagehandling.v0001.MessageCancel"
+				EntitySet="com.sap.gateway.default.aif.messagehandling.v0001.Container/MessageReturnSet"/>
+				<EntitySet Name="AIF_C_Msg_Comment" EntityType="com.sap.gateway.srvd.aif_sd_msg_comment.v0001.AIF_C_Msg_CommentType"/>
+			</EntityContainer>
+			<Annotations Target="SAP__self.IndexTableGeneric/MessageGuid"><Annotation Term="SAP__common.Label" String="GUID 16"/><Annotation Term="SAP__common.QuickInfo" String="GUID in 'CHAR' Format in Uppercase"/></Annotations>
+			<Annotations Target="SAP__self.IndexTableGeneric/Namespace"><Annotation Term="SAP__common.Label" String="Namespace"/></Annotations>
+			<Annotations Target="SAP__self.IndexTableGeneric/InterfaceName"><Annotation Term="SAP__common.Label" String="Interface Name"/></Annotations>
+			<Annotations Target="SAP__self.IndexTableGeneric/InterfaceVersion"><Annotation Term="SAP__common.Label" String="Interface Version"/></Annotations>
+			<Annotations Target="SAP__self.IndexTableGeneric/LogMessage"><Annotation Term="SAP__common.Label" String="Message text"/><Annotation Term="SAP__common.QuickInfo" String="Message Text"/></Annotations>
+			<Annotations Target="SAP__self.IndexTableGeneric/Status"><Annotation Term="SAP__common.Label" String="Processing Status"/></Annotations>
+			<Annotations Target="SAP__self.IndexTableGeneric/ProcessDate">
+				<Annotation Term="SAP__common.Label" String="UTC Timestamp"/>
+				<Annotation Term="SAP__common.Heading" String="Message Processing Timestamp in UTC Timezone"/>
+				<Annotation Term="SAP__common.QuickInfo" String="Message Processing Timestamp in UTC Timezone"/>
+				</Annotations>
+			<Annotations Target="SAP__self.IndexTableGeneric/AssignedProcessor">
+				<Annotation Term="SAP__common.Label" String="Processor"/>
+				<Annotation Term="SAP__common.Heading" String="Message Processor"/>
+				<Annotation Term="SAP__common.QuickInfo" String="Message Processor"/></Annotations>
+			<Annotations Target="SAP__self.IndexTableGeneric/AssignedProcessStatus">
+				<Annotation Term="SAP__common.Label" String="Processing Status"/></Annotations>
+			<Annotations Target="SAP__self.IndexTableGeneric/EditedStatus">
+			<Annotation Term="SAP__common.Label" String="Status"/>
+			<Annotation Term="SAP__common.QuickInfo" String="Status for persistency engine"/>
+			</Annotations>
+			<Annotations Target="SAP__self.IndexTableGeneric/CommentCount">
+			<Annotation String="INT4" Term="SAP__common.Label"/>
+			<Annotation String="4 Byte Signed Integer" Term="SAP__common.QuickInfo"/>
+			</Annotations>
+			<Annotations Target="SAP__self.Container/IndexTableGenericSet">
+				<Annotation Term="SAP__capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="MessageGuid"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Namespace"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="InterfaceName"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="InterfaceVersion"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="LogMessage"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Status"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="AssignedProcessor"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="AssignedProcessStatus"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="SAP__capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="QueryOptions">
+							<Record><PropertyValue Property="SelectSupported" Bool="true"/></Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="SAP__self.Container/KeyFieldsSet">
+				<Annotation Term="SAP__capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="Namespace"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="InterfaceName"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="InterfaceVersion"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="FieldName"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="IsHidden"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="IsSelectionOption"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Length"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Decimals"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="InputMask"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Precision"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Scale"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Uppercase"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="SAP__capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="QueryOptions">
+							<Record><PropertyValue Property="SelectSupported" Bool="true"/></Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="SAP__self.Container/MessageKeySet">
+				<Annotation Term="SAP__capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="Namespace"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="InterfaceName"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="InterfaceVersion"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="MessageGuid"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="SAP__capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="QueryOptions">
+							<Record><PropertyValue Property="SelectSupported" Bool="true"/></Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="SAP__self.MessageLog/MessageGuid"><Annotation Term="SAP__common.Label" String="GUID 16"/><Annotation Term="SAP__common.QuickInfo" String="GUID in 'CHAR' Format in Uppercase"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/Namespace"><Annotation Term="SAP__common.Label" String="Namespace"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/InterfaceName"><Annotation Term="SAP__common.Label" String="Interface Name"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/InterfaceVersion"><Annotation Term="SAP__common.Label" String="Interface Version"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/Counter"><Annotation Term="SAP__common.Label" String="Character field, length 32"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/Counter2"><Annotation Term="SAP__common.Label" String="Character field, length 32"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/MsgType"><Annotation Term="SAP__common.Label" String="Message Type"/><Annotation Term="SAP__common.Heading" String="Msg.typ"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/MsgId"><Annotation Term="SAP__common.Label" String="Message Class"/><Annotation Term="SAP__common.Heading" String="Message ID"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/MsgNo"><Annotation Term="SAP__common.Label" String="Message number"/><Annotation Term="SAP__common.Heading" String="Msg.no."/><Annotation Term="SAP__common.QuickInfo" String="Message Number"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/Text"><Annotation Term="SAP__common.Label" String="Message text"/><Annotation Term="SAP__common.QuickInfo" String="Message Text"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/Timestamp"><Annotation Term="SAP__common.Label" String="Time stamp"/><Annotation Term="SAP__common.QuickInfo" String="Application Log: Message time stamp"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/HasLongText"><Annotation Term="SAP__common.Label" String="Docu status"/><Annotation Term="SAP__common.Heading" String="Documentation status"/><Annotation Term="SAP__common.QuickInfo" String="Object documentation status"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/HasDetailText"><Annotation Term="SAP__common.Label" String="Boolean Variable (X=True, -=False, Space=Unknown)"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/Rectypenr"><Annotation Term="SAP__common.Label" String="Record Type Number"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/Globalrownr"><Annotation Term="SAP__common.Label" String="Global Row Number"/></Annotations>
+			<Annotations Target="SAP__self.MessageLog/Fieldname"><Annotation Term="SAP__common.Label" String="Component name"/><Annotation Term="SAP__common.Heading" String="Component"/></Annotations>
+			<Annotations Target="SAP__self.Container/MessageLogSet">
+				<Annotation Term="SAP__capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="MessageGuid"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Namespace"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="InterfaceName"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="InterfaceVersion"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Counter"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Counter2"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="MsgType"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="MsgId"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Text"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="HasLongText"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="HasDetailText"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Fieldname"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="SAP__capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="QueryOptions">
+							<Record><PropertyValue Property="SelectSupported" Bool="true"/></Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="SAP__self.Container/MessageReturnSet">
+				<Annotation Term="SAP__capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="TYPE"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="ID"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="MESSAGE"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="LOG_NO"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="MESSAGE_V1"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="MESSAGE_V2"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="MESSAGE_V3"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="MESSAGE_V4"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="PARAMETER"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="FIELD"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="MSGGUID"/><PropertyValue Property="AllowedExpressions" String="MultiValue"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="SAP__capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="QueryOptions">
+							<Record><PropertyValue Property="SelectSupported" Bool="true"/></Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
