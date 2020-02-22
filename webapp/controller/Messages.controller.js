@@ -51,6 +51,7 @@ sap.ui.define([
 			this.oFilterBarDelegate.setFiltersObject(this._oAdditionalPara);
 			this._bindTable();
 			this._updateKeyfields();
+			// Add navigation column to message detail page for message table
 			this._addNavigation();
 
 		},
@@ -480,10 +481,22 @@ sap.ui.define([
 		},
 		/***********************************Mass restart/cancel process end********************************/
 
-		/***********************************Navigation begin********************************/
+		/* =========================================================== */
+		/* Navigation logic to message detail page - begin                                            
+		/* =========================================================== */
+
+		/**
+		 * The Event handler for navigating to message detail page.
+		 * The json object oMessageDetail works for storing message detail information for 
+		 * message detail page.
+		 * The component level model MessageDetail will be created from object oMessageDetail.
+		 * @param  {sap.ui.base.Event} oEvent the navigation event
+		 * @public 
+		 */
 		onNavigation: function (oEvent) {
 			var oRow = oEvent.getParameter("row");
-			var oItem = oEvent.getParameter("item");
+
+			// Create message detail context
 			var oMessageDetail = {
 				ns: this._sNs,
 				ifname: this._sIfname,
@@ -492,16 +505,28 @@ sap.ui.define([
 				icon: oRow.getCells()[0].getIcon(),
 				state: oRow.getCells()[0].getState()
 			};
-			var oMessageDetailModel = new JSONModel(oMessageDetail);
+
+			// Clear the model before navigation
 			var oParaModel = sap.ui.getCore().getModel("MessageDetail");
 			if (oParaModel !== undefined) {
 				oParaModel.destroy(true);
 			}
+
+			var oMessageDetailModel = new JSONModel(oMessageDetail);
+			// Set model to provide message detail context for message detail page
 			sap.ui.getCore().setModel(oMessageDetailModel, "MessageDetail");
 
+
 			var oRouter = UIComponent.getRouterFor(this);
+			// Go to message detail page
 			oRouter.navTo("messageDetail");
 		},
+		/**
+		 * Method for adding the navigation column at the end of the massage table.
+		 * If the interface is a web service technology interface, ie /TECH-WS_TEC-1, 
+		 * the navigation column will be invisible.
+		 * @private
+		 */
 		_addNavigation: function () {
 			var fnNavigation = this.onNavigation.bind(this);
 			var oRowActionTemplate = new sap.ui.table.RowAction({
@@ -514,9 +539,13 @@ sap.ui.define([
 				]
 			});
 
+			// Create navigation column
 			this._oTable.setRowActionTemplate(oRowActionTemplate);
 			this._oTable.setRowActionCount(1);
 		}
-		/***********************************Navigation end********************************/
+		/* =========================================================== */
+		/* Navigation logic to message detail page - end                                           
+		/* =========================================================== */
+
 	});
 });
