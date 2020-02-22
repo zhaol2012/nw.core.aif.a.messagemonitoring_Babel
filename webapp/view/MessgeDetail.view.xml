@@ -18,8 +18,9 @@
                             <ObjectPageDynamicHeaderTitle>
                                 <heading>
                                     <m:FlexBox id="messgeFBox" fitContainer="true" alignItems="Center">
-                                        <m:Avatar id="statusAvatar" src="{MD>/icon}" backgroundColor="Random" class="sapUiTinyMarginEnd"/>
-                                        <m:Title id="messageNumber" text="{MD>/msgguid}" wrapping="true" />
+                                        <!-- <m:Avatar id="statusAvatar" src="{MD>/icon}" backgroundColor="Transparent" class="sapUiTinyMarginEnd"/>
+                                        <m:Title id="messageNumber" text="{MD>/msgguid}" wrapping="true" /> -->
+                                        <m:ObjectStatus state="{MD>/state}" icon="{MD>/icon}" text="{MD>/msgguid}"/>
                                     </m:FlexBox>
                                 </heading>
 

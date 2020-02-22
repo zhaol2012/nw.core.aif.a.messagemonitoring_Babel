@@ -483,12 +483,14 @@ sap.ui.define([
 		/***********************************Navigation begin********************************/
 		onNavigation: function (oEvent) {
 			var oRow = oEvent.getParameter("row");
+			var oItem = oEvent.getParameter("item");
 			var oMessageDetail = {
 				ns: this._sNs,
 				ifname: this._sIfname,
 				ifver: this._sIfver,
 				msgguid: oRow.getBindingContext().getObject().MessageGuid,
-				icon: oRow.getCells()[0].getIcon()
+				icon: oRow.getCells()[0].getIcon(),
+				state: oRow.getCells()[0].getState()
 			};
 			var oMessageDetailModel = new JSONModel(oMessageDetail);
 			var oParaModel = sap.ui.getCore().getModel("MessageDetail");
