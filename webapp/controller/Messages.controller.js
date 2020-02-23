@@ -416,9 +416,19 @@ sap.ui.define([
 			}
 			// this.onSearch();
 		},
-		/***********************************Mass restart/cancel process begin***********************************/
+
+		/* =========================================================== */
+		/* Mass restart/cancel process - begin                                            
+		/* =========================================================== */
+
+		/**
+		 * The Event handler for message table selection event.
+		 * @param  {sap.ui.base.Event} oEvent the message table selection event
+		 * @public 
+		 */
 		onSelectionChange: function (oEvent) {
-			this._bSelectAll = oEvent.getParameter("selectAll"); //Store table select all flag
+			// Store the select all flag
+			this._bSelectAll = oEvent.getParameter("selectAll");
 			if (this._oTable.getSelectedIndices().length > 0) {
 				this.getView().byId("buttonRestartMessage").setEnabled(true);
 				this.getView().byId("buttonCancelMessage").setEnabled(true);
@@ -427,18 +437,33 @@ sap.ui.define([
 				this.getView().byId("buttonCancelMessage").setEnabled(false);
 			}
 		},
+		/**
+		 * Method for checking message mass processing type.
+		 * Pass the corrective parameter for mass processing  method.
+		 * @param  {string} sAction the type of message processing action
+		 */
 		_massProcessCheck: function (sAction) {
 			var i18n = this._oI18nModel.getResourceBundle();
 			switch (sAction) {
-				case i18n.getText("buttonConfirmRestartMessage"): //Cancel in all
+				//Cancel in all
+				case i18n.getText("buttonConfirmRestartMessage"):
 					this._massProcess("R");
 					break;
-				case i18n.getText("buttonConfirmCancelMessage"): //Restart in all
+				//Restart in all
+				case i18n.getText("buttonConfirmCancelMessage"):
 					this._massProcess("C");
+					break;
+				default:
 					break;
 
 			}
 		},
+		/**
+		 * Method for message massive processing.
+		 * Set the correct prameters and context and 
+		 * call backend service.
+		 * @param  {string} sAction the mass process type
+		 */
 		_massProcess: function (sAction) {
 			var serviceUrl = this._oMessageModel.sServiceUrl;
 			var oTableBinding = this._oTable.getBinding("rows");
@@ -479,7 +504,11 @@ sap.ui.define([
 				}.bind(this)
 			});
 		},
-		/***********************************Mass restart/cancel process end********************************/
+
+		/* =========================================================== */
+		/* Mass restart/cancel process - end                                            
+		/* =========================================================== */
+
 
 		/* =========================================================== */
 		/* Navigation logic to message detail page - begin                                            

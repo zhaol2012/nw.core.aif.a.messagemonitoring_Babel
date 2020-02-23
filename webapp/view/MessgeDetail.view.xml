@@ -4,58 +4,58 @@
     xmlns:mvc="sap.ui.core.mvc" 
     xmlns:core="sap.ui.core" 
     xmlns:m="sap.m" height="100%">
-    <l:ResponsiveSplitter id="logContentSplitter" defaultPane="default">
+    <l:ResponsiveSplitter id="logContentSplitter" defaultPane="logPane">
         <l:PaneContainer id="logContainer">
-            <l:SplitPane id="logPane" requiredParentWidth="400">
+            <l:SplitPane requiredParentWidth="300" id="logPane">
                 <m:Panel id="logPanel" headerText="{i18n>logMessages}" height="100%">
-
+                    <m:layoutData>
+                        <l:SplitterLayoutData size="40%" />
+                    </m:layoutData>
                 </m:Panel>
             </l:SplitPane>
-            <l:PaneContainer id="contentContainer" orientation="Vertical">
-                <l:SplitPane id="contentPane" requiredParentWidth="600">
-                    <ObjectPageLayout id="messageContent" enableLazyLoading="true" showTitleInHeaderContent="true" showEditHeaderButton="true" editHeaderButtonPress="handleEditBtnPress">
-                        <headerTitle>
-                            <ObjectPageDynamicHeaderTitle>
-                                <heading>
-                                    <m:FlexBox id="messgeFBox" fitContainer="true" alignItems="Center">
-                                        <!-- <m:Avatar id="statusAvatar" src="{MD>/icon}" backgroundColor="Transparent" class="sapUiTinyMarginEnd"/>
+            <l:SplitPane requiredParentWidth="800" id="contentPane">
+                <ObjectPageLayout id="messageContent" enableLazyLoading="true" showTitleInHeaderContent="true" showEditHeaderButton="true" editHeaderButtonPress="handleEditBtnPress">
+                    <headerTitle>
+                        <ObjectPageDynamicHeaderTitle>
+                            <heading>
+                                <m:FlexBox id="messgeFBox" fitContainer="true" alignItems="Center">
+                                    <!-- <m:Avatar id="statusAvatar" src="{MD>/icon}" backgroundColor="Transparent" class="sapUiTinyMarginEnd"/>
                                         <m:Title id="messageNumber" text="{MD>/msgguid}" wrapping="true" /> -->
-                                        <m:ObjectStatus state="{MD>/state}" icon="{MD>/icon}" text="{MD>/msgguid}"/>
-                                    </m:FlexBox>
-                                </heading>
+                                    <m:ObjectStatus state="{MD>/state}" icon="{MD>/icon}" text="{MD>/msgguid}"/>
+                                </m:FlexBox>
+                            </heading>
 
-                                <actions>
-                                    <m:Button id="buttonEditContent" text="{i18n>buttonEditContent}" type="Emphasized" press=".onEditContent" />
-                                    <m:Button id="buttonRestartMessage" text="{i18n>buttonRestartMessage}" type="Transparent" press=".onRestartMessage" />
-                                    <m:Button text="{i18n>buttonCancelMessage}" type="Transparent" press=".onCancelMessage" />
-                                    <m:Button text="{i18n>buttonDownloadMessage}" type="Transparent" press=".onDownloadMessage" />
-                                </actions>
-                            </ObjectPageDynamicHeaderTitle>
-                        </headerTitle>
+                            <actions>
+                                <m:Button id="buttonEditContent" text="{i18n>buttonEditContent}" type="Emphasized" press=".onEditContent" />
+                                <m:Button id="buttonRestartMessage" text="{i18n>buttonRestartMessage}" type="Transparent" press=".onRestartMessage" />
+                                <m:Button text="{i18n>buttonCancelMessage}" type="Transparent" press=".onCancelMessage" />
+                                <m:Button text="{i18n>buttonDownloadMessage}" type="Transparent" press=".onDownloadMessage" />
+                            </actions>
+                        </ObjectPageDynamicHeaderTitle>
+                    </headerTitle>
 
-                        <headerContent>
-                            <m:FlexBox id="messageHeader" wrap="Wrap">
-                                <l:VerticalLayout class="sapUiSmallMarginBeginEnd">
-                                    <m:ObjectStatus id="processedDataTime" title="Processed on" text="23.02.2019 - 13:45:56"/>
-                                    <!--<l:HorizontalLayout class="sapUiContentPadding nestedFlexboxes">-->
-                                    <m:HBox id="messageOtherInfo">
-                                        <m:ObjectStatus id="messageStatus" title="Process Status" text="In Process" class="sapUiSmallMarginEnd"/>
-                                        <m:ObjectStatus id="messageProcessor" title="Processor" text="MMuller" class="sapUiSmallMarginEnd"/>
-                                        <m:ObjectStatus id="commentsNumber" title="Comments" text="2"/>
-                                    </m:HBox>
-                                    <!--</l:HorizontalLayout>-->
+                    <headerContent>
+                        <m:FlexBox id="messageHeader" wrap="Wrap">
+                            <l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                                <m:ObjectStatus id="processedDataTime" title="Processed on" text="23.02.2019 - 13:45:56"/>
+                                <!--<l:HorizontalLayout class="sapUiContentPadding nestedFlexboxes">-->
+                                <m:HBox id="messageOtherInfo">
+                                    <m:ObjectStatus id="messageStatus" title="Process Status" text="In Process" class="sapUiSmallMarginEnd"/>
+                                    <m:ObjectStatus id="messageProcessor" title="Processor" text="MMuller" class="sapUiSmallMarginEnd"/>
+                                    <m:ObjectStatus id="commentsNumber" title="Comments" text="2"/>
+                                </m:HBox>
+                                <!--</l:HorizontalLayout>-->
 
-                                </l:VerticalLayout>
-                            </m:FlexBox>
-                        </headerContent>
+                            </l:VerticalLayout>
+                        </m:FlexBox>
+                    </headerContent>
 
-                        <sections>
+                    <sections>
 
-                        </sections>
+                    </sections>
 
-                    </ObjectPageLayout>
-                </l:SplitPane>
-            </l:PaneContainer>
+                </ObjectPageLayout>
+            </l:SplitPane>
         </l:PaneContainer>
     </l:ResponsiveSplitter>
 </mvc:View>
