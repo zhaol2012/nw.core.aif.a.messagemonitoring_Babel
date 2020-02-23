@@ -417,9 +417,8 @@ sap.ui.define([
 			// this.onSearch();
 		},
 
-		/* =========================================================== */
-		/* Mass restart/cancel process - begin                                            
-		/* =========================================================== */
+
+		/* Mass restart/cancel process - begin */
 
 		/**
 		 * The Event handler for message table selection event.
@@ -505,18 +504,13 @@ sap.ui.define([
 			});
 		},
 
-		/* =========================================================== */
-		/* Mass restart/cancel process - end                                            
-		/* =========================================================== */
+		/* Mass restart/cancel process - end */
 
-
-		/* =========================================================== */
-		/* Navigation logic to message detail page - begin                                            
-		/* =========================================================== */
+		/* Navigation logic to message detail page - begin   */
 
 		/**
 		 * The Event handler for navigating to message detail page.
-		 * The json object oMessageDetail works for storing message detail information for 
+		 * The object oMessageDetail works for storing message detail information for 
 		 * message detail page.
 		 * The component level model MessageDetail will be created from object oMessageDetail.
 		 * @param  {sap.ui.base.Event} oEvent the navigation event
@@ -572,9 +566,7 @@ sap.ui.define([
 			this._oTable.setRowActionTemplate(oRowActionTemplate);
 			this._oTable.setRowActionCount(1);
 		}
-		/* =========================================================== */
-		/* Navigation logic to message detail page - end                                           
-		/* =========================================================== */
+		/* Navigation logic to message detail page - end   */
 
 	});
 });
